@@ -3,7 +3,7 @@ import "./Audio.css";
 
 
 const Audio = ({ id, drumKey, url, setClip }) => {
-   
+   //implement keyDown events for keyboard play
    const keyDownHandler=(event)=>{ 
     console.log("clicked");
     if(event.key.toUpperCase() === drumKey){
@@ -12,14 +12,14 @@ const Audio = ({ id, drumKey, url, setClip }) => {
 
    } }; 
   
-  useEffect(()=>{
+   useEffect(()=>{
       window.addEventListener("keydown", keyDownHandler)
       return ()=>{window.removeEventListener("keydown", keyDownHandler)}
     }, []);
 
 
 
-
+   //mouse click play drum
     const audioPlayHandler = () => {
       let x = document.getElementById(drumKey);
       x.play();
@@ -28,27 +28,12 @@ const Audio = ({ id, drumKey, url, setClip }) => {
     };
   
 
-    // const handleKeyPress = (event)=> {
-    //   setKeystate(event.key)
-    //   console.log(keyState.toUpperCase())
-    //   if (keyState.toUpperCase() === drumKey){
-    //     audioPlayHandler();
-    //   }
-      //  let x = document.getElementById(drumKey);
-      //  console.log(x);
-      //  console.log(x.id);
-      //  console.log(keyState);
-      //  {
-      //     x.play();
-      //    setClip(drumKey);
-      // }
-    // };
+
   
     return (
       <div id={id} className="drum-pad" onClick={audioPlayHandler} >
         <audio className="clip" id={drumKey} src={url}></audio>
         {drumKey}
-        {/* <input type="text" id="one" onKeyPress={handleKeyPress} /> */}
       </div>
     );
   };
